@@ -1,0 +1,22 @@
+# Writeup 3 - OPSEC
+
+Name: Justin Becker
+Section: 0101
+
+I pledge on my honor that I have not given or received any unauthorized assistance on this assignment or examination.
+
+Digital acknowledgement: Justin Becker
+
+## Assignment Writeup
+
+### Part 1 (40 pts)
+
+To obtain that information about Norman, I would use a directed spear phishing attack. While just asking for this information would seem suspicious, directing a user to a malicious site of your own design can often catch targets off gaurd. In this attack, I would pose as a representative of Norman's financial institution and say that there has been trouble with his checking account. In an ideal world, we could possibly tail Norman going about his day to determine what bank he uses, and possibly what type of debit/credit cards he uses. In some cases, receipts for store purchases will list the last 4 digits of a card number, this would also help our repore. The more specific we can be, the better. If we have this or not, we can still call him, and use his address as a way to add legitmacy to our call. (ie. "Mr. Norman, I see here that your address is listed as '1300 Adabel Dr, El Paso, TX.' is that still correct" Bonus Points: This isn't correct, and he gives you a more up to date address) Once we have him interested, we will tell him that there has been a number of fradulent uses of his card, so we've "disabled his PIN" and he will have to reenter it to confirm. We can then direct him to our fake bank website, prompting him to login. (Bonus points: we get his username and password) Once he has navigated to our page, we can immediately get his browser, and other host information. One the next page, we will prompt him with our security questions ("what city were you born in," "name of first pet" etc) stating that "the banks security policies have changed recently" so he will have to update him. For bonus legitmacy, prompt him to setup 2FA for our fake service, to further confuse him. Once he has done all of this, our page will ask him to supply his bank pin, in order to reactivate his account. With all this being said, though this could be "too obvious" for tech savy people, an attack almost exactly like this was used to steal my grandparents identity a couple years ago. The only thing we need to pull it off is knoweldge of what financial institutions he is a customer of.
+
+### Part 2 (60 pts)
+
+1.  The primary weakness with the Wattsamp server is the unsecured remote shell server on port 1337. This server communicates over plaintext, meaning that any eavesdropper could easily intercept messages sent between the client and server. This includes authentication messages, allowing eavesdroppers to get plaintext usernames and passwords for the system. Beyond this the server also does not have DDoS or bruteforce attack protection. At the very least it would be ideal to ratelimit authentication requests per-ip address. Almost all of these issues would be resolved using SSH. (which as we saw, IS running on the machine) SSH uses asymettric encryption to ensure secrecy between all client-server pairs, and most SSH implementations have DDoS/bruteforce mitigations enabled by default. You can read more about SSH [here](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+
+2.  Another major weakness with the Wattsamp server is the [low-entropy](https://xkcd.com/936/) password chosen for the admin account. 'hello1' is an egregiously simple password, and is in most major password lists. I would reccomend using a much longer password, with a mixture of numbers, letters, and special characters. With this character set, and a password over 12 characters, an attacker would be very unlikely to crack that password in any tractable amount of time. To test a potential password for its strength before using it in production, I would reccomend checking it's strength [here](https://howsecureismypassword.net/) and that it has never been breached before [here](https://haveibeenpwned.com/Passwords)
+
+3. In terms of OPSEC, Eric Norman did not do a very good job of protecting himself online. The largest of his infractions was not using a domain registrar that hides registrant information. With his name, phone, and email attached to that domain name, he leaves himself vulnerable to potential targetting by spear phishing attacks (like described in part 1)
