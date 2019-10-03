@@ -21,4 +21,6 @@ To prevent this, Norman should sanitize his input. One technique for doing so is
 
 ### Part 2 (55 pts)
 
-*Please use this space to detail your approach and solutions for part 2. Don't forget to upload your completed source code to this /writeup directory as well!*
+To create the shell for this part of the assignment, the key challenge is to keep track of the variables that real shells keep track of for you. Forgetting about complexities like environment variables and .bashrc files, the main design decision you face is keeping track of your current directory. Since the server we're connecting to won't remember our CD we have to keep track of it ourselves. With that said, we have two choices: either resolve relative paths manually, or just append a "cd $PWD;" before every command. This solution saves significant development time, and also avoids the issue of attempting to detect paths in command strings.
+
+One cool feature I was able to implement is command concatentation. We allow users to string together commands with the semicolon, and then they are executed in sequence.
