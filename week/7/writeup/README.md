@@ -35,3 +35,6 @@ Apple iPhone 8
 `strings image | grep "CMSC389"` => CMSC389R-{look_I_f0und_a_str1ng}
 
 A bruteforce attack against the file was not able to extract anything using steghide and the rockyou wordlist.
+
+using `binwalk --dd='.*' image.jpg` recovered a png file at 0x248F20
+Opening this file revealed the flag CMSC389R-{abr@cadabra}
