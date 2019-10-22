@@ -14,5 +14,5 @@ while read p; do
     then
         echo -en "\r$i"
     fi
-done <"../2/rockyou.txt"
+done <"rockyou.txt"
 
