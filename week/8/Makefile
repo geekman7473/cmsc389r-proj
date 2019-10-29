@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -m32 -z execstack -fno-stack-protector -O0 -g
+CFLAGS=-Wall -z execstack -fno-stack-protector -O0 -g
 
 all: format overflow server byteorder
 
