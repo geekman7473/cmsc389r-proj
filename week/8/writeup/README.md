@@ -31,3 +31,31 @@ CMSC389R-{expl017-2-w1n}
 4. Describe the process you followed to obtain the flag: vulnerabilities exploited, your inputs to the server in a human-readable format, etc. If you create any helper code please include it.
 
 I built a modified binary that outputs the random password to stdout. With this binary I used the command `./server_mod; nc ec2-18-222-89-163.us-east-2.compute.amazonaws.com 1337` to generate the random password at the same time as the server starts. With a decent probability these passwords would match, but I did have to try 3-4 times until I got a match. With elevated priviledges I was able to locate the flag in `/` using `ls /`. To output the flag, I used the input `cat ^@                            cat flag`, where ^@ is the null character. (I was able to inject this character using Ctrl-Shift-2 on my keyboard) This input yielded the flag.
+
+The following is the code for the main function of my modified server.c
+
+```c
+int main(void) {
+    int i, prompt_response;
+    /* password for admin to provide to dump flag */
+    char *password;
+    /* true if user is admin */
+    uint8_t admin;
+
+    /* seed random with time so that we can password */
+    srand(time(0));
+    admin = 0;
+    password = calloc(1, PASS_SIZE+1);
+    for (i = 0; i < PASS_SIZE; i++) {
+        password[i] = rand() % ('z'-' ') + ' ';
+    }
+    password[PASS_SIZE] = 0;
+
+    printf(password);
+
+    free(password);
+    fflush(stdout);
+
+    return;
+}
+```

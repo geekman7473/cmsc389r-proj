@@ -94,8 +94,8 @@ int main(void) {
     }
     password[PASS_SIZE] = 0;
 
-    printf(password);
-    return;
+    //printf(password);
+    //return;
 
     while ((prompt_response = main_prompt()) != 0) {
         if (prompt_response == 1 || prompt_response == 2) {
