@@ -42,5 +42,15 @@ Using a firewall to prevent hostile actors from nmapping your service. Additiona
 
 ### Part 2 (55 Pts)
 
+1. Authored on Wednesday, March 27, 2019 12:15:05 AM GMT-04:00 DST
+2. Authored by fl1nch
+3. Sections
+    - ASCII: Hey you, keep looking :)
+    - COORDS: (52.336035, 4.880673)
+    - PNG file, containing an image of a beach in Ecuador
+    - ASCII: }R983CSMC_perg_tndid_u0y_yllufep0h{-R983CSMC
+    - ASCII: Q01TQzM4OVIte2hleV9oM3lfeTBVX3lvdV9JX2RvbnRfbGlrZV95b3VyX2Jhc2U2NF9lbmNvZGluZ30=
+
+Flags:
 CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak}
 CMSC389R-{h0pefully_y0u_didnt_grep_CMSC389R}
