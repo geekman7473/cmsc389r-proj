@@ -43,5 +43,19 @@ IV is generated using a secure random byte generation function and then is store
 
 ### Part 2 (45 Pts)
 
+The key to this challenge is the small keyspace for the "key" found by taking the MD5 hash of the password from command line argument. Since there are only ~65k possible values for the key, there will likewise only be 65k possible values for the "key hash." Assuming that MD5 outputs are roughly equally likely to one another, we should have a 1/65k chance of any given password matching the hash. Repeating this process a few thousand times should get us a match quickly.
+
+The algorithm is thus:
+1) Choose a random printable string
+2) Takes it's MD5 hash
+3) Zero out all but it's high 2 bytes
+4) Take the hash of the resulting 16 bytes
+5) Compare this to the "key hash" in the file
+6) If they don't match, goto #1, else goto #7
+7) The random string is a "valid" password. Write it to stdout and exit.
+
+CMSC389R-{k3y5p4c3_2_sm411}
+
 ### Part 3 (10 Pts)
 
+In my opinion security through obscurity has little value with regards to internet connected computer systems. Though having the source code available can make the reverse engineering process easier, strong cryptographic methods are mathematically secure, even if you know the exact implementation. For example, if ledger.c had used SHA512 for it's hashing algorithm, and hadn't truncated the hashes output, it would have been computationally intractable to break the encryption. With that said, there is a place for obscurity. For example, in air-gapped systems for government use, there is value in hiding details of your security protocols and procedures from possible nation-state actors, who may be more motivated and capable, than your typical black hats.
