@@ -9,7 +9,7 @@ ledger: ledger.o $(OBJECTS)
 crack: crack.o $(OBJECTS)
 
 clean:
-	rm -rf *.o $(TARGETS) *.bin
+	rm -rf *.o $(TARGETS)
 
 all: ledger crack
 
